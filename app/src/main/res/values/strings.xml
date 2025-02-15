@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MeraBills</string>
+    <string name="total_amount_title">Total Amount = \u20B9</string>
+    <string name="payments">Payments</string>
+    <string name="add_payment_underline"><u>Add Payment</u></string>
+    <string name="add_payment">Add Payment</string>
+    <string name="save">Save</string>
+    <string name="payment_example">Credit Card: RS. 800</string>
+    <string name="remove_item">Remove Item</string>
+    <string name="amount">Amount</string>
+    <string name="rupee_symbol">\u20B9</string>
+    <string name="provide_hint">Provider (ICICI, Citibank, etc.)</string>
+    <string name="transaction_reference">Transaction reference</string>
+    <string name="cancel">CANCEL</string>
+    <string name="ok">OK</string>
+    <string name="_0_00">0.00</string>
+    <string name="float_value">%.2f</string>
+    <string name="payment_mode_amount">%s: Rs. %.2f"</string>
+</resources>

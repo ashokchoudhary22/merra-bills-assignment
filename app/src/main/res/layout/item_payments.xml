@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="12dp"
+    android:background="@drawable/bg_item_payments"
+    android:layout_marginTop="8dp">
+
+    <TextView
+        android:id="@+id/paymentMethodText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/payment_example"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_vertical" />
+
+    <ImageView
+        android:id="@+id/removeIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:contentDescription="@string/remove_item"
+        android:layout_gravity="center_vertical"
+        app:tint="@color/black"
+        android:layout_marginStart="12dp"/>
+</LinearLayout>
