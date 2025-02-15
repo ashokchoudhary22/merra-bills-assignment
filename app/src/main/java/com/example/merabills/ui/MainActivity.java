@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         viewModel.totalAmount.observe(this, amount ->
                 binding.totalAmountTv.setText(getString(R.string.float_value, amount))
         );
+
+        binding.saveBt.setOnClickListener(view -> {
+            viewModel.savePayments();
+        });
     }
 
     private void showAddPaymentDialog(){
