@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PaymentsRecyclerViewAdapter extends RecyclerView.Adapter<PaymentsRecyclerViewAdapter.PaymentViewHolder> {
 
-    public List<Payment> paymentList;
+    private final List<Payment> paymentList;
     private final OnCancelIconClickListener listener;
 
     public PaymentsRecyclerViewAdapter(List<Payment> paymentList, OnCancelIconClickListener listener) {

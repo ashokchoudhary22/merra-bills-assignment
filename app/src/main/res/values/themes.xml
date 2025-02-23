@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MeraBills" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MeraBills" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->

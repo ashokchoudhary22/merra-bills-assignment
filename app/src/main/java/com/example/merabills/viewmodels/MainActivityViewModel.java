@@ -3,6 +3,7 @@ package com.example.merabills.viewmodels;
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 
@@ -15,7 +16,8 @@ import java.util.List;
 
 public class MainActivityViewModel extends AndroidViewModel {
     public List<Payment>  payments= new ArrayList<>();
-    public MutableLiveData<Float> totalAmount = new MutableLiveData<Float>(0.0F);
+    private final MutableLiveData<Float> _totalAmount = new MutableLiveData<Float>(0.0F);
+    public LiveData<Float> totalAmount = _totalAmount;
 
     public MainActivityViewModel(Application application){
         super(application);
@@ -26,7 +28,7 @@ public class MainActivityViewModel extends AndroidViewModel {
             totalAmount += payment.amount;
         }
 
-        this.totalAmount.setValue(totalAmount);
+        this._totalAmount.setValue(totalAmount);
     }
     public ArrayList<PaymentMode> getRemainingPaymentModeOptions(){
         ArrayList<PaymentMode> modes = new ArrayList<>(Arrays.asList(PaymentMode.CASH, PaymentMode.BANK_TRANSFER, PaymentMode.CREDIT_CARD));
@@ -38,11 +40,11 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public void addNewPayment(Payment payment){
         payments.add(payment);
-        totalAmount.setValue(totalAmount.getValue() + payment.amount);
+        _totalAmount.setValue(_totalAmount.getValue() + payment.amount);
     }
 
     public void removePayment(int position){
-        totalAmount.setValue(totalAmount.getValue() - payments.get(position).amount);
+        _totalAmount.setValue(_totalAmount.getValue() - payments.get(position).amount);
         payments.remove(position);
     }
 
