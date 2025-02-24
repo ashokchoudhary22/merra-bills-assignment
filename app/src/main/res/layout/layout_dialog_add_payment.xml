@@ -41,6 +41,7 @@
                 android:inputType="numberDecimal"
                 android:paddingVertical="4dp"
                 android:paddingStart="8dp"
+                android:maxLength="10"
                 android:background="@drawable/bg_outlined_box"
                 android:layout_marginStart="4dp"
                 android:textColor="@color/black"

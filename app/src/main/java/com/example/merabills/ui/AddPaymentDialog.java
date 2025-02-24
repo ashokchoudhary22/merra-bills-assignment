@@ -16,9 +16,12 @@ import com.example.merabills.databinding.LayoutDialogAddPaymentBinding;
 import com.example.merabills.enums.PaymentMode;
 import com.example.merabills.models.Payment;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class AddPaymentDialog extends Dialog {
+
+    private static final double AMOUNT_LIMIT = 100_00_00_000;
 
     private LayoutDialogAddPaymentBinding binding;
     private final PaymentConfirmationListener paymentConfirmationListener;
@@ -90,6 +93,12 @@ public class AddPaymentDialog extends Dialog {
             return;
         }
 
+        double amount = Double.parseDouble(amountStr);
+        if(amount > AMOUNT_LIMIT){
+            Toast.makeText(getContext(), "Amount should not be greater than " + (new BigDecimal(AMOUNT_LIMIT)).toPlainString(), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if(selectedPaymentMode == null){
             Toast.makeText(getContext(), "select Payment mode", Toast.LENGTH_SHORT).show();
             return;
@@ -102,7 +111,7 @@ public class AddPaymentDialog extends Dialog {
         if ((reference.isBlank()))
             reference = null;
 
-        Payment payment = new Payment(Float.parseFloat(amountStr), selectedPaymentMode, provider, reference);
+        Payment payment = new Payment(amount, selectedPaymentMode, provider, reference);
 
         paymentConfirmationListener.onConfirm(payment);
         dismiss();

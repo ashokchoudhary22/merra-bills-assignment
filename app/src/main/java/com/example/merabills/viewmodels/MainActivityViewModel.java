@@ -16,12 +16,12 @@ import java.util.List;
 
 public class MainActivityViewModel extends AndroidViewModel {
     public List<Payment>  payments= new ArrayList<>();
-    private final MutableLiveData<Float> _totalAmount = new MutableLiveData<Float>(0.0F);
-    public LiveData<Float> totalAmount = _totalAmount;
+    private final MutableLiveData<Double> _totalAmount = new MutableLiveData<>(0.0);
+    public LiveData<Double> totalAmount = _totalAmount;
 
     public MainActivityViewModel(Application application){
         super(application);
-        float totalAmount = 0.0f;
+        double totalAmount = 0.0;
         List<Payment> savedPayments = PaymentsFileHandler.readPaymentsFromFile(getApplication());;
         for(Payment payment: savedPayments){
             payments.add(payment);
