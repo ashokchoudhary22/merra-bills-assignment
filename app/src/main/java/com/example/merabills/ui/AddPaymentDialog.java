@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -50,14 +52,26 @@ public class AddPaymentDialog extends Dialog {
             getWindow().setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT);
             getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
+        setupPaymentModeSpinner();
+        setListeners();
+    }
 
+    private void setListeners(){
+       setPaymentModeSpinnerListener();
+       setActionButtonListeners();
+       setAmountTextWatcher();
+    }
+
+    private void setupPaymentModeSpinner(){
         ArrayList<String> paymentMethodVisibleNames = new ArrayList<>();
         for(PaymentMode mode: availablePaymentModes){
             paymentMethodVisibleNames.add(mode.getVisibleName());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, paymentMethodVisibleNames);
         binding.modeSpinner.setAdapter(adapter);
+    }
 
+    private void setPaymentModeSpinnerListener(){
         binding.modeSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
@@ -68,12 +82,30 @@ public class AddPaymentDialog extends Dialog {
             @Override
             public void onNothingSelected(android.widget.AdapterView<?> parent) {}
         });
-
+    }
+    private void setActionButtonListeners(){
         binding.okBt.setOnClickListener(v -> {
             onPaymentConfirmation();
         });
 
         binding.cancelTv.setOnClickListener(v -> dismiss());
+    }
+
+    private void setAmountTextWatcher(){
+        binding.amountEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().equals(".")) {
+                    binding.amountEt.setText("");
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
     }
 
     private void updateTransactionDetailsUIVisibility(){
